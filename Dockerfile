@@ -1,16 +1,14 @@
-FROM centos:centos6
+FROM ubuntu:14.04
 MAINTAINER Jordi Prats
 
-RUN yum clean all
+RUN wget http://apt.puppetlabs.com/puppetlabs-release-wheezy.deb
 
-RUN rpm -Uvh http://yum.puppetlabs.com/puppetlabs-release-el-6.noarch.rpm
+RUN dpkg -i puppetlabs-release-wheezy.deb
 
-RUN rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+RUN apt-get update
 
-RUN yum update -y
+RUN apt-get install -y puppet puppet-common puppet-el puppet-testsuite puppetmaster puppetmaster-common vim-puppet puppetmaster-passenger
 
-RUN yum install facter puppet-server hiera-puppet puppet httpd mod_ssl rubygem-rack mod_passenger -y
-
-
+RUN sed -i "s/START=yes/START=no/g" /etc/default/puppetmaster
 
 
