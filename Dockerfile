@@ -1,6 +1,8 @@
 FROM ubuntu:14.04
 MAINTAINER Jordi Prats
 
+RUN apt-get install wget -y
+
 RUN wget http://apt.puppetlabs.com/puppetlabs-release-wheezy.deb
 
 RUN dpkg -i puppetlabs-release-wheezy.deb
@@ -11,4 +13,4 @@ RUN apt-get install -y puppet puppet-common puppet-el puppet-testsuite puppetmas
 
 RUN sed -i "s/START=yes/START=no/g" /etc/default/puppetmaster
 
-
+#ENTRYPOINT ["/usr/sbin/apache2", "-k", "start", "-DNO_DETACH"]
