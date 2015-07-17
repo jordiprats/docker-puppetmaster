@@ -22,4 +22,4 @@ ENV APACHE_RUN_USER www-data
 
 #TODO: eliminar logs d'apache
 
-#ENTRYPOINT ["/usr/sbin/apache2", "-k", "start", "-DNO_DETACH"]
+ENTRYPOINT ["/usr/sbin/apache2", "-k", "start", "-DNO_DETACH"]
