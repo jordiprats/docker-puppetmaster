@@ -20,16 +20,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install wget -y
 #
 # puppet repo
 #
-RUN wget http://apt.puppetlabs.com/puppetlabs-release-wheezy.deb
+RUN wget http://apt.puppetlabs.com/puppetlabs-release-wheezy.deb >/dev/null 2>&1
 RUN dpkg -i puppetlabs-release-wheezy.deb
 RUN DEBIAN_FRONTEND=noninteractive apt-get update
-
-#
-# puppet config
-#
-RUN mkdir -p /etc/puppet
-COPY conf/puppet.conf /etc/puppet/puppet.conf
-
 
 #
 # puppet packages
@@ -40,6 +33,12 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y puppet puppet-common puppe
 # disable puppetmaster daemon (we are using passenger)
 #
 RUN sed -i "s/START=yes/START=no/g" /etc/default/puppetmaster
+
+#
+# puppet config
+#
+RUN mkdir -p /etc/puppet
+COPY conf/puppet.conf /etc/puppet/puppet.conf
 
 #
 # apache vars
