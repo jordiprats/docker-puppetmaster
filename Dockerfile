@@ -41,7 +41,8 @@ RUN mkdir -p /etc/puppet
 COPY conf/puppet.conf /etc/puppet/puppet.conf
 
 # eliminar logs d'apache
-RUN find /etc/apache2 -iname \*conf -exec  sed 's@\(\(Custom\|Error\)Log \).*@\1 /dev/null@' -i {} \;
+RUN find /etc/apache2 -iname \*conf -exec  sed 's@\(ErrorLog \).*@\1 /dev/null@' -i {} \;
+RUN find /etc/apache2 -iname \*conf -exec  sed 's@CustomLog .*@@' -i {} \;
 
 #
 # apache vars
@@ -55,4 +56,6 @@ ENV APACHE_RUN_USER www-data
 
 VOLUME ["/var/lib/puppet"]
 
-#ENTRYPOINT ["/usr/sbin/apache2", "-k", "start", "-DNO_DETACH"]
+EXPOSE 8140
+
+# ENTRYPOINT ["/usr/sbin/apache2", "-k", "start", "-D", "NO_DETACH"]
