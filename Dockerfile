@@ -62,4 +62,5 @@ VOLUME ["/var/lib/puppet"]
 
 EXPOSE 8140
 
-ENTRYPOINT ["/usr/sbin/apache2", "-k", "start", "-D", "NO_DETACH"]
+#ENTRYPOINT ["/usr/sbin/apache2", "-k", "start", "-D", "NO_DETACH"]
+CMD /usr/sbin/apache2 -k start -D NO_DETACH
