@@ -40,6 +40,10 @@ RUN sed -i "s/START=yes/START=no/g" /etc/default/puppetmaster
 RUN mkdir -p /etc/puppet
 COPY conf/puppet.conf /etc/puppet/puppet.conf
 
+RUN sed 's@SSLCertificateFile.*@SSLCertificateFile /var/lib/puppet/ssl/certs/puppet.pem@' -i /etc/apache2/sites-available/puppetmaster.conf
+RUN sed 's@SSLCertificateKeyFile.*@SSLCertificateKeyFile /var/lib/puppet/ssl/private_keys/puppet.pem@' -i /etc/apache2/sites-available/puppetmaster.conf
+
+
 # eliminar logs d'apache
 RUN find /etc/apache2 -iname \*conf -exec  sed 's@\(ErrorLog \).*@\1 /dev/null@' -i {} \;
 RUN find /etc/apache2 -iname \*conf -exec  sed 's@CustomLog .*@@' -i {} \;
@@ -58,4 +62,4 @@ VOLUME ["/var/lib/puppet"]
 
 EXPOSE 8140
 
-# ENTRYPOINT ["/usr/sbin/apache2", "-k", "start", "-D", "NO_DETACH"]
+ENTRYPOINT ["/usr/sbin/apache2", "-k", "start", "-D", "NO_DETACH"]
