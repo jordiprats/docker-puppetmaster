@@ -15,6 +15,8 @@ RUN export LANGUAGE=en_US.UTF-8 && \
 	locale-gen en_US.UTF-8 && \
 	DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales
 
+RUN DEBIAN_FRONTEND=noninteractive apt-get update
+
 RUN DEBIAN_FRONTEND=noninteractive apt-get install wget -y
 
 #
