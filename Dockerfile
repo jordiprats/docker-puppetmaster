@@ -61,6 +61,8 @@ ENV APACHE_RUN_GROUP www-data
 ENV APACHE_RUN_USER www-data
 
 VOLUME ["/var/lib/puppet"]
+VOLUME ["/etc/puppet/filebuckets"]
+VOLUME ["/etc/puppet"]
 
 EXPOSE 8140
 
