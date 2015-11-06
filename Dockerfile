@@ -6,7 +6,12 @@ ENV HOME /root
 RUN mkdir -p /etc/puppet/filebuckets
 
 VOLUME ["/etc/puppet/filebuckets"]
-VOLUME ["/etc/puppet"]
+VOLUME ["/etc/puppet/environments"]
+VOLUME ["/etc/puppet/hiera.yaml"]
+VOLUME ["/etc/puppet/hieradata"]
+VOLUME ["/etc/puppet/fileserver.conf"]
+VOLUME ["/etc/puppet/auth.conf"]
+VOLUME ["/etc/puppet/puppet.conf"]
 
 #
 # timezone and locale
