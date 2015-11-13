@@ -10,6 +10,8 @@ class { 'puppet': }
 class { 'puppet::master':
   certname => '${EYP_PUPPETFQDN}',
   manage_service => false,
+  modulepath => '/etc/local-puppet-modules',
+  basemodulepath => '/etc/local-puppet-modules',
 }
 
 EOF
