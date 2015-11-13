@@ -80,4 +80,4 @@ VOLUME ["/etc/puppet"]
 EXPOSE 8140
 
 #ENTRYPOINT ["/usr/sbin/apache2", "-k", "start", "-D", "NO_DETACH"]
-CMD /usr/local/bin/runme.sh
+CMD /bin/bash /usr/local/bin/runme.sh
