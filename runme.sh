@@ -10,8 +10,8 @@ then
   class { 'puppet': }
 
 	class { 'puppet::master':
-		certname => '${EYP_PUPPETFQDN}',
-    manage_apache => false,
+    certname => '${EYP_PUPPETFQDN}',
+    manage_service => false,
 	}
 
 EOF
