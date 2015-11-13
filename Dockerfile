@@ -1,17 +1,14 @@
 FROM ubuntu:14.04
 MAINTAINER Jordi Prats
 
+ENV EYP_PUPPETFQDN=puppet2
+
 ENV HOME /root
 
-RUN mkdir -p /etc/puppet/filebuckets
+RUN mkdir -p /usr/local/src
+RUN mkdir -p /etc/puppet
 
-VOLUME ["/etc/puppet/filebuckets"]
-VOLUME ["/etc/puppet/environments"]
-VOLUME ["/etc/puppet/hiera.yaml"]
-VOLUME ["/etc/puppet/hieradata"]
-VOLUME ["/etc/puppet/fileserver.conf"]
-VOLUME ["/etc/puppet/auth.conf"]
-VOLUME ["/etc/puppet/puppet.conf"]
+COPY runme.sh /usr/local/bin/
 
 #
 # timezone and locale
@@ -50,7 +47,6 @@ RUN sed -i "s/START=yes/START=no/g" /etc/default/puppetmaster
 # puppet config
 #
 RUN mkdir -p /etc/puppet
-COPY conf/puppet.conf /etc/puppet/puppet.conf
 
 RUN sed 's@SSLCertificateFile.*@SSLCertificateFile /var/lib/puppet/ssl/certs/puppet.pem@' -i /etc/apache2/sites-available/puppetmaster.conf
 RUN sed 's@SSLCertificateKeyFile.*@SSLCertificateKeyFile /var/lib/puppet/ssl/private_keys/puppet.pem@' -i /etc/apache2/sites-available/puppetmaster.conf
@@ -59,6 +55,13 @@ RUN sed 's@SSLCertificateKeyFile.*@SSLCertificateKeyFile /var/lib/puppet/ssl/pri
 # eliminar logs d'apache
 RUN find /etc/apache2 -iname \*conf -exec  sed 's@\(ErrorLog \).*@\1 /dev/null@' -i {} \;
 RUN find /etc/apache2 -iname \*conf -exec  sed 's@CustomLog .*@@' -i {} \;
+
+#clone eyp-puppet
+RUN mkdir -p /usr/local/src/puppetmodules
+
+RUN git clone https://github.com/jordiprats/eyp-puppet /usr/local/src/puppetmodules/puppet
+RUN git clone https://github.com/puppetlabs/puppetlabs-stdlib /usr/local/src/puppetmodules/stdlib
+RUN git clone https://github.com/puppetlabs/puppetlabs-concat /usr/local/src/puppetmodules/concat
 
 #
 # apache vars
@@ -71,9 +74,10 @@ ENV APACHE_RUN_GROUP www-data
 ENV APACHE_RUN_USER www-data
 
 VOLUME ["/var/lib/puppet"]
+VOLUME ["/etc/puppet"]
 
 
 EXPOSE 8140
 
 #ENTRYPOINT ["/usr/sbin/apache2", "-k", "start", "-D", "NO_DETACH"]
-CMD /usr/sbin/apache2 -k start -D NO_DETACH
+#CMD /usr/sbin/apache2 -k start -D NO_DETACH
