@@ -2,7 +2,7 @@ FROM ubuntu:14.04
 MAINTAINER Jordi Prats
 
 ENV EYP_PUPPETFQDN=puppet2
-ENV EYP_PUPPET_LOCAL_MODULES=/etc/local-puppet-modules
+ENV EYP_PUPPET_INSTANCE_MODULES=/etc/instance-puppet-modules
 ENV HOME /root
 
 RUN mkdir -p /usr/local/src
