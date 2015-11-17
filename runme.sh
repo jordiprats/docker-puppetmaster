@@ -3,6 +3,8 @@
 
 touch /etc/puppet/hiera.yaml
 
+mkdir -p /etc/local-puppet-modules
+
 cat <<EOF > /tmp/manifest.pp
 
 class { 'puppet':
