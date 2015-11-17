@@ -4,6 +4,7 @@ MAINTAINER Jordi Prats
 ENV EYP_PUPPETFQDN=puppet2
 ENV EYP_PUPPET_INSTANCE_MODULES=/etc/instance-puppet-modules
 ENV EYP_INTERNAL_FORGE http://localhost:80
+ENV EYP_ELK_HOST localhost
 ENV HOME /root
 
 RUN mkdir -p /usr/local/src

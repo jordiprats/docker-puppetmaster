@@ -15,6 +15,7 @@ class { 'puppet':
 class { 'puppet::master':
   certname => '${EYP_PUPPETFQDN}',
   manage_service => false,
+  logstash_host => '${EYP_ELK_HOST}'
 }
 
 EOF
