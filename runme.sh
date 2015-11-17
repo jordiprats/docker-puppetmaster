@@ -3,12 +3,12 @@
 
 touch /etc/puppet/hiera.yaml
 
-mkdir -p /etc/local-puppet-modules
+mkdir -p $EYP_PUPPET_LOCAL_MODULES
 
 cat <<EOF > /tmp/manifest.pp
 
 class { 'puppet':
-  basemodulepath => '/etc/local-puppet-modules',
+  basemodulepath => '${EYP_PUPPET_LOCAL_MODULES}',
 }
 
 class { 'puppet::master':
