@@ -25,9 +25,9 @@ for i in $(tar tvf /modules/puppetball.tgz  | awk '{ print $NF }' | cut -f 1,2 -
 do
   echo "= $i ="
 
-  if [ ! -z "${EYP_INSTERNAL_FORGE}" ];
+  if [ ! -z "${EYP_INTERNAL_FORGE}" ];
   then
-    EYP_MODULE_REPOSITORY="--module_repository=${EYP_INSTERNAL_FORGE}"
+    EYP_MODULE_REPOSITORY="--module_repository=${EYP_INTERNAL_FORGE}"
   fi
 
   puppet module install $i $EYP_MODULE_REPOSITORY
