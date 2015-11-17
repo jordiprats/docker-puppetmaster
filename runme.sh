@@ -31,6 +31,6 @@ do
   fi
 
   puppet module install $i $EYP_MODULE_REPOSITORY
-fi
+done
 
 /usr/sbin/apache2 -k start -D NO_DETACH
