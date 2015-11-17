@@ -7,7 +7,7 @@ ENV HOME /root
 
 RUN mkdir -p /usr/local/src
 RUN mkdir -p /etc/puppet
-RUN mkdir -p $EYP_PUPPET_LOCAL_MODULES
+RUN [ "/bin/bash", "-c", "mkdir -p $EYP_PUPPET_INSTANCE_MODULES" ]
 
 COPY runme.sh /usr/local/bin/
 
