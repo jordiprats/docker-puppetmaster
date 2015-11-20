@@ -76,6 +76,8 @@ ENV APACHE_RUN_DIR /var/run/apache2
 ENV APACHE_RUN_GROUP www-data
 ENV APACHE_RUN_USER www-data
 
+RUN ln -sf /etc/puppet/hiera.yaml /etc/hiera.yaml
+
 VOLUME ["/var/lib/puppet"]
 VOLUME ["/etc/puppet"]
 
