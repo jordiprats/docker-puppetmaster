@@ -66,6 +66,11 @@ RUN git clone https://github.com/jordiprats/eyp-puppet /usr/local/src/puppetmodu
 RUN git clone https://github.com/puppetlabs/puppetlabs-stdlib /usr/local/src/puppetmodules/stdlib
 RUN git clone https://github.com/puppetlabs/puppetlabs-concat /usr/local/src/puppetmodules/concat
 
+# yamlwildcard
+RUN git clone https://github.com/jordiprats/hiera-yaml_wildcard /usr/local/src/yamlwildcard
+RUN bash -c 'cd /usr/local/src/yamlwildcard; gem build /usr/local/src/yamlwildcard/hiera-yaml_wildcard.gemspec'
+RUN gem install /usr/local/src/yamlwildcard/hiera-yaml_wildcard-0.1.0.gem
+
 #
 # apache vars
 #
