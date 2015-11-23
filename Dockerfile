@@ -71,6 +71,9 @@ RUN git clone https://github.com/jordiprats/hiera-yaml_wildcard /usr/local/src/y
 RUN bash -c 'cd /usr/local/src/yamlwildcard; gem build /usr/local/src/yamlwildcard/hiera-yaml_wildcard.gemspec'
 RUN gem install /usr/local/src/yamlwildcard/hiera-yaml_wildcard-0.1.0.gem
 
+#deep_merge
+RUN gem install deep_merge
+
 #
 # apache vars
 #
