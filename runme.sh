@@ -22,7 +22,7 @@ EOF
 
 puppet apply --modulepath=/usr/local/src/puppetmodules/ /tmp/manifest.pp
 
-for i in $(tar tvf /modules/puppetball.tgz  | awk '{ print $NF }' | cut -f 1,2 -d-);
+for i in $(tar tvf /modules/puppetball.tgz  | awk '{ print $NF }' | cut -f 1,2 -d- | sort);
 do
   echo "= $i ="
 
