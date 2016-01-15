@@ -2,6 +2,8 @@
 
 exec >/modules/logs/puppetmaster.startup.${EYP_INSTANCE_NUMBER}.log 2>&1
 
+apt-get update
+
 touch /etc/puppet/hiera.yaml
 
 mkdir -p $EYP_PUPPET_INSTANCE_MODULES
