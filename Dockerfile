@@ -12,6 +12,7 @@ RUN mkdir -p /etc/puppet
 RUN [ "/bin/bash", "-c", "mkdir -p $EYP_PUPPET_INSTANCE_MODULES" ]
 
 COPY runme.sh /usr/local/bin/
+COPY bootstrap.sh /usr/local/bin/
 
 #
 # timezone and locale
