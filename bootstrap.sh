@@ -10,3 +10,4 @@ sleep 1
 
 sed 's/START=.*/START=no/' -i /etc/default/puppetmaster
 
+touch /etc/puppet/manifests/site.pp
