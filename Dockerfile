@@ -29,6 +29,7 @@ RUN export LANGUAGE=en_US.UTF-8 && \
 RUN DEBIAN_FRONTEND=noninteractive apt-get update
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install wget -y
+RUN DEBIAN_FRONTEND=noninteractive apt-get install strace -y
 
 #
 # puppet repo
