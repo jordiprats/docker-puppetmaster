@@ -85,11 +85,11 @@ RUN gem install deep_merge
 RUN git clone https://github.com/AtlasIT-AM/puppet-module-skeleton.git /usr/local/src/puppet-module-skeleton
 RUN bash -c 'cd /usr/local/src/puppet-module-skeleton; bash install.sh'
 
-#install Gems
-RUN bash -c 'cd /root; puppet module generate eyp-lol --skip-interview'
-RUN bash -c 'cd /root/eyp-lol; bundle install'
-#cleanup
-RUN rm -fr /root/eyp-lol
+# #install Gems
+# RUN bash -c 'cd /root; puppet module generate eyp-lol --skip-interview'
+# RUN bash -c 'cd /root/eyp-lol; bundle install'
+# #cleanup
+# RUN rm -fr /root/eyp-lol
 
 #
 # apache vars
