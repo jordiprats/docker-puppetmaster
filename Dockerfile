@@ -5,6 +5,7 @@ ENV EYP_PUPPETFQDN=puppet2
 ENV EYP_PUPPET_INSTANCE_MODULES=/etc/instance-puppet-modules
 ENV EYP_INTERNAL_FORGE http://localhost:80
 ENV EYP_ELK_HOST localhost
+ENV EYP_PUPPET_STARTUP_LOGDIR /logs
 ENV HOME /root
 
 RUN mkdir -p /usr/local/src
@@ -28,8 +29,12 @@ RUN export LANGUAGE=en_US.UTF-8 && \
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update
 
+RUN DEBIAN_FRONTEND=noninteractive apt-get install gcc -y
+RUN DEBIAN_FRONTEND=noninteractive apt-get install make -y
 RUN DEBIAN_FRONTEND=noninteractive apt-get install wget -y
 RUN DEBIAN_FRONTEND=noninteractive apt-get install strace -y
+RUN DEBIAN_FRONTEND=noninteractive apt-get install libxml2-dev -y
+RUN DEBIAN_FRONTEND=noninteractive apt-get install zlib1g-dev -y
 
 #
 # puppet repo
@@ -79,6 +84,12 @@ RUN gem install deep_merge
 #templates puppe module generate
 RUN git clone https://github.com/AtlasIT-AM/puppet-module-skeleton.git /usr/local/src/puppet-module-skeleton
 RUN bash -c 'cd /usr/local/src/puppet-module-skeleton; bash install.sh'
+
+#install Gems
+RUN bash -c 'cd /root; puppet module generate eyp-lol --skip-interview'
+RUN bash -c 'cd /root/eyp-lol; bundle install'
+#cleanup
+RUN rm -fr /root/eyp-lol
 
 #
 # apache vars

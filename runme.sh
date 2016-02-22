@@ -1,6 +1,7 @@
 #!/bin/bash
 
-exec >/modules/logs/puppetmaster.startup.${EYP_INSTANCE_NUMBER}.log 2>&1
+mkdir -p ${EYP_PUPPET_STARTUP_LOGDIR}
+exec >${EYP_PUPPET_STARTUP_LOGDIR}/puppetmaster.startup.${EYP_INSTANCE_NUMBER}.log 2>&1
 
 apt-get update
 
