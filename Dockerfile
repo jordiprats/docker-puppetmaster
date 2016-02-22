@@ -75,6 +75,10 @@ RUN gem install /usr/local/src/yamlwildcard/hiera-yaml_wildcard-0.1.0.gem
 #deep_merge
 RUN gem install deep_merge
 
+#templates puppe module generate
+RUN git clone https://github.com/AtlasIT-AM/puppet-module-skeleton.git /usr/local/src/puppet-module-skeleton
+RUN bash -c 'cd /usr/local/src/puppet-module-skeleton; bash install.sh'
+
 #
 # apache vars
 #
