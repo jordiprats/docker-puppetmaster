@@ -5,6 +5,9 @@ exec >${EYP_PUPPET_STARTUP_LOGDIR}/puppetmaster.startup.${EYP_INSTANCE_NUMBER}.l
 
 apt-get update
 
+puppet module install puppetlabs-stdlib --version 4.17.1 --modulepath=/usr/local/src/puppetmodules/
+puppet module install puppetlabs-concat --version 2.2.1 --modulepath=/usr/local/src/puppetmodules/
+
 touch /etc/puppet/hiera.yaml
 
 mkdir -p $EYP_PUPPET_INSTANCE_MODULES

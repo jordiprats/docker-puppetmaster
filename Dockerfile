@@ -70,8 +70,6 @@ RUN find /etc/apache2 -iname \*conf -exec  sed 's@CustomLog .*@@' -i {} \;
 RUN mkdir -p /usr/local/src/puppetmodules
 
 RUN git clone https://github.com/jordiprats/eyp-puppet /usr/local/src/puppetmodules/puppet
-RUN git clone https://github.com/puppetlabs/puppetlabs-stdlib /usr/local/src/puppetmodules/stdlib
-RUN git clone https://github.com/puppetlabs/puppetlabs-concat /usr/local/src/puppetmodules/concat
 
 # yamlwildcard
 RUN git clone https://github.com/jordiprats/hiera-yaml_wildcard /usr/local/src/yamlwildcard
